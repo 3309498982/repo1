@@ -1,5 +1,0 @@
-<<<<<<< HEAD
-QQQQQQQQQQQQQ
-=======
-WWWWWWWWWWWWW
->>>>>>> dev

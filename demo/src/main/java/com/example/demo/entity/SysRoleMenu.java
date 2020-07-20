@@ -1,5 +1,8 @@
 package com.example.demo.entity;
 
+import lombok.Data;
+
+@Data
 public class SysRoleMenu {
     private Integer id;
 
@@ -7,27 +10,4 @@ public class SysRoleMenu {
 
     private Integer mid;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getRid() {
-        return rid;
-    }
-
-    public void setRid(Integer rid) {
-        this.rid = rid;
-    }
-
-    public Integer getMid() {
-        return mid;
-    }
-
-    public void setMid(Integer mid) {
-        this.mid = mid;
-    }
 }

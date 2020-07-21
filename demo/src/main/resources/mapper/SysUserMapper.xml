@@ -9,12 +9,12 @@
     <sql id="Base_Column_List">
         ID, USERNAME, PASSWORD
     </sql>
-    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <select id="findByUsernameAndPassword" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
             <include refid="Base_Column_List"/>
         from
             SYS_USER
         where
-            ID = #{id,jdbcType=INTEGER}
+            USERNAME = #{username} and PASSWORD = #{password}
     </select>
 </mapper>

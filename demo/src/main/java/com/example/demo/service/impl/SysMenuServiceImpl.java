@@ -1,16 +1,13 @@
 package com.example.demo.service.impl;
 
-import com.alibaba.druid.util.Utils;
 import com.example.demo.dao.SysMenuDao;
 import com.example.demo.entity.SysMenu;
 import com.example.demo.entity.SysRole;
 import com.example.demo.service.SysMenuService;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**

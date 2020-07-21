@@ -3,7 +3,7 @@
 <mapper namespace="com.example.demo.dao.SysMenuDao">
     <select id="findSysMenuByRole" parameterType="java.lang.Integer" resultType="com.example.demo.entity.SysMenu">
         select
-            sm.ID, sm.PARENT_ID as parentId, MENU_NAME as menuName, HREF, PERMISSION
+            sm.ID, sm.PARENT_ID as parentId, sm.TITLE, sm.HREF, sm.PERMISSION
         from
             SYS_ROLE_MENU srm left join SYS_MENU sm on srm.MID = sm.ID
         where

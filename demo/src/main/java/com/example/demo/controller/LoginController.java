@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.entity.SysMenu;
 import com.example.demo.entity.SysRole;
 import com.example.demo.entity.SysUser;
+import com.example.demo.entity.vo.CommonResult;
 import com.example.demo.service.SysMenuService;
 import com.example.demo.service.SysRoleService;
 import com.example.demo.service.SysUserService;
@@ -35,12 +36,12 @@ public class LoginController {
     private SysMenuService menuService;
 
     @RequestMapping("login")
-    public List<SysMenu> login(String username, String password){
+    public CommonResult login(String username, String password){
         SysUser u = userService.login(username, password);
         // 查询用户属于那种角色
         List<SysRole> roles = roleService.findSysRoleBySysUserId(u.getId());
         // 查询用户拥有权限菜单
         List<SysMenu> sysMenus = menuService.findSysMenuByRole(roles);
-        return sysMenus;
+        return CommonResult.successResponse(sysMenus);
     }
 }

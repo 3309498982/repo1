@@ -10,7 +10,7 @@ public class SysMenu {
 
     private Integer parentId;
 
-    private String menuName;
+    private String title;
 
     private String href;
 

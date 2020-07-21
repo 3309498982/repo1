@@ -25,7 +25,7 @@ public class SysRoleServiceImpl implements SysRoleService {
     private SysRoleDao roleDao;
 
     @Override
-    public List<SysRole> findBySysUserId(Integer uid) {
-        return roleDao.findBySysUserId(uid);
+    public List<SysRole> findSysRoleBySysUserId(Integer uid) {
+        return roleDao.findSysRoleBySysUserId(uid);
     }
 }

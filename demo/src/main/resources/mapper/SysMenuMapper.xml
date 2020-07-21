@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.SysMenuDao">
+    <select id="findSysMenuByRoleId" parameterType="java.lang.Integer" resultType="com.example.demo.entity.SysMenu">
+        select
+            sm.ID, sm.PARENT_ID as parentId, MENU_NAME as menuName, HREF, PERMISSION
+        from
+            SYS_ROLE_MENU srm left join SYS_MENU sm on srm.MID = sm.ID
+        where
+            srm.RID = #{rid}
+    </select>
+</mapper>

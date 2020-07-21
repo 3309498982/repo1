@@ -21,5 +21,5 @@ public interface SysRoleService {
      * @param uid
      * @return List<SysRole>
      */
-    List<SysRole> findBySysUserId(Integer uid);
+    List<SysRole> findSysRoleBySysUserId(Integer uid);
 }

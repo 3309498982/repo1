@@ -3,6 +3,7 @@ package com.example.demo.service.impl;
 import com.alibaba.druid.util.Utils;
 import com.example.demo.dao.SysMenuDao;
 import com.example.demo.entity.SysMenu;
+import com.example.demo.entity.SysRole;
 import com.example.demo.service.SysMenuService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
@@ -29,9 +30,9 @@ public class SysMenuServiceImpl implements SysMenuService {
     private SysMenuDao menuDao;
 
     @Override
-    public List<SysMenu> findSysMenuByRoleId(Integer rid) {
+    public List<SysMenu> findSysMenuByRole(List<SysRole> roles) {
         //查询所有菜单
-        List<SysMenu> menuList = menuDao.findSysMenuByRoleId(rid);
+        List<SysMenu> menuList = menuDao.findSysMenuByRole(roles);
         //根节点
         List<SysMenu> rootMenu = new ArrayList<>();
         for (SysMenu menu : menuList) {

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -41,10 +40,7 @@ public class LoginController {
         // 查询用户属于那种角色
         List<SysRole> roles = roleService.findSysRoleBySysUserId(u.getId());
         // 查询用户拥有权限菜单
-        List<SysMenu> sysMenus = null;
-        for (SysRole role : roles) {
-            sysMenus = menuService.findSysMenuByRoleId(role.getId());
-        }
+        List<SysMenu> sysMenus = menuService.findSysMenuByRole(roles);
         return sysMenus;
     }
 }

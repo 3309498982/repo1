@@ -18,7 +18,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  */
 @Configuration
 public class InterceptorConfig implements WebMvcConfigurer {
-    /*
+
+    /**
      * 拦截器配置
      * 在spring-mvc.xml配置文件内添加<mvc:interceptor>标签配置拦截器。
      */

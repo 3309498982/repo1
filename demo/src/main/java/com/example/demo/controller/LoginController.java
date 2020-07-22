@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.annotation.MyRequiredPermission;
 import com.example.demo.entity.SysMenu;
 import com.example.demo.entity.SysRole;
 import com.example.demo.entity.SysUser;
@@ -7,11 +8,14 @@ import com.example.demo.entity.vo.CommonResult;
 import com.example.demo.service.SysMenuService;
 import com.example.demo.service.SysRoleService;
 import com.example.demo.service.SysUserService;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Set;
 
 /**
  * <b>类名称：<b/>LoginController <b/>
@@ -23,7 +27,7 @@ import java.util.List;
  *
  * @version 1.0.0 <b/>
  */
-@RestController
+@Controller
 public class LoginController {
 
     @Resource
@@ -36,12 +40,22 @@ public class LoginController {
     private SysMenuService menuService;
 
     @RequestMapping("login")
-    public CommonResult login(String username, String password){
+    @ResponseBody
+    public CommonResult login(String username, String password, HttpSession session) {
         SysUser u = userService.login(username, password);
         // 查询用户属于那种角色
         List<SysRole> roles = roleService.findSysRoleBySysUserId(u.getId());
-        // 查询用户拥有权限菜单
+        // 查询用户拥有菜单
         List<SysMenu> sysMenus = menuService.findSysMenuByRole(roles);
+        // 查询用户权限
+        Set<String> userPermissions = menuService.findUserPermission(roles);
+        session.setAttribute("userPermissions", userPermissions);
         return CommonResult.successResponse(sysMenus);
+    }
+
+    @MyRequiredPermission("sys:user:list")
+    @RequestMapping("/index")
+    public String home(){
+        return "index";
     }
 }

@@ -27,19 +27,11 @@ public class MyPermissionInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        //排除不需要拦截的URI
-        String uri = request.getRequestURI();
-        if (StringUtils.startsWith(uri, request.getContextPath() + "/login")
-                || StringUtils.startsWith(uri, request.getContextPath() + "/logout")
-                || StringUtils.startsWith(uri, request.getContextPath() + "/home")) {
-            return true;
-        }
-
         if (handler instanceof HandlerMethod) {
             HandlerMethod handlerMethod = (HandlerMethod) handler;
             // 获取方法上的注解
             MyRequiredPermission permission = handlerMethod.getMethod().getAnnotation(MyRequiredPermission.class);
-            // 如果方法上的注解为空 则获取类的注解
+            // 如果方法上的注解为空
             if (permission == null) {
                 response.setCharacterEncoding("UTF-8");
                 response.setContentType("application/json;charset=UTF-8");

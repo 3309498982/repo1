@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import com.example.demo.annotation.MyRequiredPermission;
 import com.example.demo.entity.SysMenu;
 import com.example.demo.entity.SysRole;
 import com.example.demo.entity.SysUser;
@@ -53,9 +52,4 @@ public class LoginController {
         return CommonResult.successResponse(sysMenus);
     }
 
-    @MyRequiredPermission("sys:user:list")
-    @RequestMapping("/index")
-    public String home(){
-        return "index";
-    }
 }

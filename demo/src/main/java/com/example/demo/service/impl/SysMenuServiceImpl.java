@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * <b>类名称：<b/>SysMenuServiceImpl <b/>
@@ -44,6 +46,17 @@ public class SysMenuServiceImpl implements SysMenuService {
             menu.setChildren(childList);//给根节点设置子节点
         }
         return rootMenu;
+    }
+
+    @Override
+    public Set<String> findUserPermission(List<SysRole> roles) {
+        //查询所有菜单
+        List<SysMenu> menuList = menuDao.findSysMenuByRole(roles);
+        Set<String> permissionSet = new HashSet<>();
+        for (SysMenu menu : menuList) {
+            permissionSet.add(menu.getPermission());
+        }
+        return permissionSet;
     }
 
     /**

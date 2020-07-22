@@ -26,7 +26,9 @@ public class InterceptorConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         // 权限校验拦截器配置
-        registry.addInterceptor(new MyPermissionInterceptor()).addPathPatterns("/**");
+        registry.addInterceptor(new MyPermissionInterceptor())
+                .addPathPatterns("/**")
+                .excludePathPatterns("/", "/login", "/logout");
         // 父类的配置
         WebMvcConfigurer.super.addInterceptors(registry);
     }

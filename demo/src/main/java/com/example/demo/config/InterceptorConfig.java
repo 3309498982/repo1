@@ -4,6 +4,7 @@ import com.example.demo.Interceptor.MyPermissionInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
@@ -31,6 +32,14 @@ public class InterceptorConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/", "/login", "/logout");
         // 父类的配置
         WebMvcConfigurer.super.addInterceptors(registry);
+    }
+
+    /**
+     * 配置静态资源访问路径
+     */
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/**").addResourceLocations("/","classpath:/");
     }
 
     /**

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.SysRoleDao">
+    <select id="findSysRoleBySysUserId" parameterType="java.lang.Integer" resultType="com.example.demo.entity.SysRole">
+        select
+            sr.ID, sr.ROLE_NAME as roleName
+        from
+            SYS_USER_ROLE sur left join SYS_ROLE sr on sur.RID = sr.ID
+        where
+            sur.UID = #{uid,jdbcType=INTEGER}
+    </select>
+
+</mapper>

@@ -50,8 +50,7 @@ public class MyPermissionInterceptor implements HandlerInterceptor {
                 return false;
             } else if (permission.value().length != 0) {
                 // redis或数据库 中获取该用户的权限信息 并判断是否有权限
-                Set<String> permissionSet = new HashSet<>(); //adminUserService.getPermissionSet();
-                permissionSet.add("xx");
+                Set<String> permissionSet = (Set<String>) request.getSession().getAttribute("userPermissions");
                 if (CollectionUtils.isEmpty(permissionSet)) {
                     response.setCharacterEncoding("UTF-8");
                     response.setContentType("application/json;charset=UTF-8");

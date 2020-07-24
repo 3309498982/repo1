@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.annotation.MyRequiredPermission;
 import com.example.demo.entity.SysMenu;
 import com.example.demo.entity.SysRole;
 import com.example.demo.entity.SysUser;
@@ -49,7 +50,12 @@ public class LoginController {
         // 查询用户权限
         Set<String> userPermissions = menuService.findUserPermission(roles);
         session.setAttribute("userPermissions", userPermissions);
-        return CommonResult.successResponse(sysMenus);
+        return CommonResult.successResponse(0,"OK", sysMenus);
+    }
+
+    @RequestMapping("index")
+    public String index(){
+        return "index";
     }
 
 }

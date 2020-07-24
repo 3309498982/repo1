@@ -15,11 +15,11 @@ import lombok.Data;
 @Data
 public class CommonResult<T> {
 
-    private String code;
+    private int code;
     private String msg;
     private T data;
 
-    protected CommonResult(String code, String msg, T data) {
+    protected CommonResult(int code, String msg, T data) {
         this.code = code;
         this.msg = msg;
         this.data = data;
@@ -30,7 +30,7 @@ public class CommonResult<T> {
      * @param data 获取的数据
      */
     public static <T> CommonResult successResponse(T data) {
-        return new CommonResult("200", "OK", data);
+        return new CommonResult(200, "OK", data);
     }
 
     /**
@@ -38,14 +38,23 @@ public class CommonResult<T> {
      * @param data    获取的数据
      */
     public static <T> CommonResult successResponse(String msg, T data) {
-        return new CommonResult("200", msg, data);
+        return new CommonResult(200, msg, data);
+    }
+
+    /**
+     * @param code 自定义提示码
+     * @param msg 自定义提示信息
+     * @param data    获取的数据
+     */
+    public static <T> CommonResult successResponse(int code, String msg, T data) {
+        return new CommonResult(code, msg, data);
     }
 
     /**
      * 失败返回结果
      */
     public static <T> CommonResult failedResponse() {
-        return new CommonResult("404", "FAILED", null);
+        return new CommonResult(404, "FAILED", null);
     }
 
     /**
@@ -54,7 +63,7 @@ public class CommonResult<T> {
      * @param msg 自定义信息
      */
     public static <T> CommonResult failedResponse(String msg) {
-        return new CommonResult("404", msg, null);
+        return new CommonResult(404, msg, null);
     }
 
 }

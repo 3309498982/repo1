@@ -59,11 +59,19 @@ public class CommonResult<T> {
 
     /**
      * 失败返回结果
-     *
      * @param msg 自定义信息
      */
     public static <T> CommonResult failedResponse(String msg) {
         return new CommonResult(404, msg, null);
+    }
+
+    /**
+     * 失败返回结果
+     * @param code 自定义提示码
+     * @param msg 自定义信息
+     */
+    public static <T> CommonResult failedResponse(int code, String msg) {
+        return new CommonResult(code, msg, null);
     }
 
 }

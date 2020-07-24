@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.Set;
 
 /**
@@ -50,7 +51,7 @@ public class MyPermissionInterceptor implements HandlerInterceptor {
                     out.close();
                     return false;
                 }
-                return permissionSet.contains(permission.value());
+                return permissionSet.containsAll(Arrays.asList(permission.value()));
             }
         }
         return false;

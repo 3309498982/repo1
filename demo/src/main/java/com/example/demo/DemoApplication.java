@@ -15,7 +15,7 @@ public class DemoApplication {
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
         log.info("项目启动成功！！！");
-        log.info("http://localhost:8080/login?username=xpp&password=123");
+        log.info("http://localhost:8080/index");
     }
 
 }

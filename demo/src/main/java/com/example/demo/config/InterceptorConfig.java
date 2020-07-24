@@ -35,7 +35,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
     }
 
     /**
-     * 配置静态资源访问路径
+     * 配置静态资源访问路径，外部可以直接访问地址
      */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {

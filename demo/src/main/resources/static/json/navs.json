@@ -1,0 +1,63 @@
+{
+	"code": 0,
+	"msg": "ok",
+	"data": [
+		{
+			"id": 1,
+			"parentId": null,
+			"code": "console",
+			"title": "权限管理",
+			"icon": "",
+			"enable": true,
+			"href": "",
+			"children": [
+				{
+					"id": 111,
+					"parentId": 11,
+					"code": "main",
+					"title": "用户管理",
+					"icon": "",
+					"enable": true,
+					"href": "page/home.html"
+				},
+				{
+					"id": 112,
+					"parentId": 11,
+					"code": "profile",
+					"title": "角色管理",
+					"icon": "",
+					"enable": true,
+					"href": "page/user/userProfile.html"
+				},
+				{
+					"id": 113,
+					"parentId": 11,
+					"code": "changePassword",
+					"title": "菜单管理",
+					"icon": "",
+					"enable": true,
+					"href": "page/user/changePassword.html"
+				}
+			]
+		},	{
+			"id": 2,
+			"parentId": null,
+			"code": "console",
+			"title": "菜单一",
+			"icon": "",
+			"enable": true,
+			"href": "",
+			"children": [
+				{
+					"id": 113,
+					"parentId": 11,
+					"code": "changePassword",
+					"title": "菜单管理",
+					"icon": "",
+					"enable": true,
+					"href": "page/user/changePassword.html"
+				}
+			]
+		}
+	]
+}

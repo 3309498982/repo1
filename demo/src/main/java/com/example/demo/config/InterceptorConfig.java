@@ -29,7 +29,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
         // 权限校验拦截器配置
         registry.addInterceptor(new MyPermissionInterceptor())
                 .addPathPatterns("/**")
-                .excludePathPatterns("/index", "/login", "/logout", "/static/**");
+                .excludePathPatterns("/loginPage","/index", "/login", "/logout", "/static/**");
         // 父类的配置
         WebMvcConfigurer.super.addInterceptors(registry);
     }

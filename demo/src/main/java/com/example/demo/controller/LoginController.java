@@ -39,6 +39,11 @@ public class LoginController {
     @Resource
     private SysMenuService menuService;
 
+    @RequestMapping("loginPage")
+    public String loginPage() {
+        return "login";
+    }
+
     @RequestMapping("login")
     @ResponseBody
     public CommonResult login(String username, String password, HttpSession session) {

@@ -73,17 +73,17 @@
     </style>
 </head>
 <body>
-<form class="layui-form" action="" method="post">
+<form class="layui-form" action="" lay-filter="example">
     <div class="container">
-        <!-- <button class="close" title="关闭">X</button> -->
+        <!--<button class="close" title="关闭">X</button>-->
         <div class="layui-form-mid layui-word-aux">
             <img id="logoid" src="" height="35">
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">用户名</label>
             <div class="layui-input-block">
-                <input type="text" name="username" required lay-verify="required" placeholder="请输入用户名" autocomplete="off"
-                       class="layui-input">
+                <input type="text" name="username" required lay-verify="required" placeholder="请输入用户名"
+                       autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
@@ -92,19 +92,17 @@
                 <input type="password" name="password" required lay-verify="required" placeholder="请输入密码"
                        autocomplete="off" class="layui-input">
             </div>
-            <!-- <div class="layui-form-mid layui-word-aux">辅助文字</div> -->
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">验证码</label>
             <div class="layui-input-inline">
-                <input type="text" name="verificationCode" placeholder="请输入验证码" autocomplete="off"
-                       class="layui-input verity">
+                <input type="text" name="title" placeholder="请输入验证码" autocomplete="off" class="layui-input verity">
             </div>
         </div>
 
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <button class="layui-btn" lay-submit lay-filter="login">登陆</button>
+                <button type="submit" class="layui-btn" lay-submit lay-filter="formDemo">登陆</button>
             </div>
         </div>
         <a href="" class="font-set">忘记密码?</a> <a href="" class="font-set">立即注册</a>
@@ -113,36 +111,23 @@
 <script type="text/javascript" src="../static/layui/layui.js"></script>
 <script>
     layui.use('form', function () {
-        let form = layui.form, layer = layui.layer;
+        let form = layui.form,
+            layer = layui.layer;
 
         //监听提交
-        form.on('submit(login)', function (data) {
-            $.ajax({
-                url:"http://localhost:8080/login",
-                async: false,
-                type:"POST",
-                dataType: "text",
-                data:data.field,
-                success: function(data){
-                    layer.alert(JSON.stringify(data.field), {
-                        title: '最终的提交信息'
-                    });
-                }
-            });
+        form.on('submit(formDemo)', function (data) {
+            window.location.href = "http://localhost:8080/index";
+            /* layer.alert(JSON.stringify(data.field), {
+                 title: '最终的提交信息'
+             });*/
             return false;
         });
 
         //表单初始赋值
         form.val('example', {
-           "username": "xpp" // "name": "value"
-           ,"password": "123"
-/*           ,"interest": 1
-           ,"like[write]": true //复选框选中状态
-           ,"close": true //开关状态
-           ,"sex": "女"
-           ,"desc": "我爱 layui"*/
-         })
-
+            "username": "xpp",
+            "password": "123"
+        })
     });
 </script>
 </body>

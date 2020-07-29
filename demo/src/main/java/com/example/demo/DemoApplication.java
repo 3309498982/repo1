@@ -20,7 +20,6 @@ public class DemoApplication extends SpringBootServletInitializer {
         log.info("http://localhost:8080/loginPage");
     }
 
-
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
         return builder.sources(DemoApplication.class);

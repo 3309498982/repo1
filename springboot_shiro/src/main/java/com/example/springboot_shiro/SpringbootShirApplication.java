@@ -15,7 +15,7 @@ public class SpringbootShirApplication extends SpringBootServletInitializer {
     public static void main(String[] args) {
         SpringApplication.run(SpringbootShirApplication.class, args);
         log.info("项目启动！！");
-        log.info("http://localhost:8080/index");
+        log.info("http://localhost:8080/loginPage");
     }
 
     @Override

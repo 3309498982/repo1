@@ -33,7 +33,9 @@ public class ShiroConfig {
         //配置系统受限制资源
         //配置系统公共资源
         HashMap<String, String> map = new HashMap<>();
-        map.put("/index", "authc");  //请求这个资源需要认证和授权
+        map.put("/loginPage", "anon");
+        map.put("/login", "anon");
+        map.put("/**", "authc");  //请求这个资源需要认证和授权
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
 
         //默认认证界面路径

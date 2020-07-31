@@ -6,6 +6,7 @@ import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
@@ -24,6 +25,16 @@ public class CustomerRealm extends AuthorizingRealm {
     //授权方法
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
+
+        //获取主身份信息
+        String primaryPrincipal = (String) principalCollection.getPrimaryPrincipal();
+        System.out.println("调用授权验证" + primaryPrincipal);
+        //根据主身份信息获取角色 和权限信息
+        if ("xpp".equals(primaryPrincipal)) {
+            SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
+            simpleAuthorizationInfo.addRole("user");
+            return simpleAuthorizationInfo;
+        }
         return null;
     }
 

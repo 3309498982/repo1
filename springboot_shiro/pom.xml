@@ -94,6 +94,12 @@
             <artifactId>Dm7JdbcDriver18</artifactId>
             <version>1.8</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.github.theborakompanioni</groupId>
+            <artifactId>thymeleaf-extras-shiro</artifactId>
+            <version>2.0.0</version>
+        </dependency>
     </dependencies>
 
     <build>

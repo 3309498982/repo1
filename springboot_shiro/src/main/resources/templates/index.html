@@ -1,10 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
     hello world
+    <ul>
+        <li><a href="">用户管理</a> </li>
+        <shiro:hashRole name = "admin">
+            <li><a href="">商品管理</a> </li>
+            <li><a href="">订单管理</a> </li>
+            <li><a href="">物流管理</a> </li>
+        </shiro:hashRole>
+    </ul>
 </body>
 </html>

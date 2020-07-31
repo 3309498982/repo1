@@ -39,7 +39,7 @@ public class ShiroConfig {
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
 
         //默认认证界面路径
-        shiroFilterFactoryBean.setLoginUrl("login");
+        shiroFilterFactoryBean.setLoginUrl("loginPage");
         return shiroFilterFactoryBean;
     }
 

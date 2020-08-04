@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<!-- Layui -->
+		<link rel="stylesheet" href="../layui/css/layui.css" media="all"/>
+		<!-- style -->
+		<link rel="stylesheet" href="../css/style.css" media="all"/>
+	</head>
+	<body>
+		
+		<div class="layui-fluid">
+			<div class="layui-row layui-col-space10">
+				<form class="layui-form" action="" style="margin-top: 20px;">
+					<div class="layui-col-sm6 layui-col-md6">
+						<div class="layui-form-item">
+							<label class="layui-form-label">序号信息：</label>
+							<div class="layui-input-block">
+								<input type="text" name="id" id="id" lay-verify="required" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">数据信息：</label>
+							<div class="layui-input-block">
+								<input type="text" name="name" id="name" lay-verify="required" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+					</div>
+					
+					<div class="layui-col-sm6 layui-col-md6">
+						<div class="layui-form-item">
+							<label class="layui-form-label">数据信息：</label>
+							<div class="layui-input-block">
+								<input type="text" name="name2" id="name2" lay-verify="required" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">数据信息：</label>
+							<div class="layui-input-block">
+								<input type="text" name="name3" id="name3" lay-verify="required" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		
+		<!--
+        	作者：347402923@qq.com
+        	时间：2019-06-11
+        	描述：JS--2.2.4
+        -->
+        <script type="text/javascript" src="../js/jquery.min.js"></script>
+        <!--
+        	作者：347402923@qq.com
+        	时间：2019-06-11
+        	描述：Layui--2.5.4
+        -->
+        <script type="text/javascript" src="../layui/layui.js"></script>
+        <script type="text/javascript" src="../mapContent/indexMap.js"></script>
+        <script>
+        	layui.use(['layer','form'], function(){
+        		var layer = layui.layer,
+        		form = layui.form;
+			    //监听提交
+			    form.on('submit(demo1)', function(data){
+			    	layer.alert(JSON.stringify(data.field), {
+			    		title: '最终的提交信息'
+			    	})
+			    	return false;
+			    });
+			    
+			    //从父页面获取的数据
+			    var parentJson = eval('('+parent.json+')');
+			    //赋值给input框
+			    $("#id").val(parentJson.id);
+			    $("#name").val(parentJson.name);
+			    $("#name2").val(parentJson.name2);
+			    $("#name3").val(parentJson.name3);
+        	});
+        </script> 
+	</body>
+</html>

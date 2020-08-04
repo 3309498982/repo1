@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<!-- Layui -->
+		<link rel="stylesheet" href="layui/css/layui.css" media="all"/>
+		<!-- style -->
+		<link rel="stylesheet" href="css/style.css" media="all"/>
+		<!-- 引用百度地图 -->
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=2COzFaICuIyVj7V3VetKfmdRVnX8BhVr"></script>
+	</head>
+	<body>
+		
+		<div class="layui-fluid">
+			<div class="layui-row layui-col-space10">
+				<blockquote class="layui-elem-quote zylMarTop">注意：Layui表格结合百度定位实现定位（含layui表格传值问题）</blockquote>
+				<!-- 百度地图 -->
+				<div class="layui-col-sm7 layui-col-md7" style="padding-top: 15px;">
+					<div class="mapHeight">
+						<div id="dituContent" style="width:100%;height:100%;font-size:14px"></div>
+					</div>
+				</div>
+				<!-- 百度地图 End -->
+				<!-- 表格主体 -->
+				<div class="layui-col-sm5 layui-col-md5">
+					<table id="demo" lay-filter="test"></table>
+				</div>
+				<!-- 表格主体 End -->
+			</div>
+		</div>
+		
+		<!--
+        	作者：347402923@qq.com
+        	时间：2019-06-11
+        	描述：JS--2.2.4
+        -->
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <!--
+        	作者：347402923@qq.com
+        	时间：2019-06-11
+        	描述：Layui--2.5.4
+        -->
+        <script type="text/javascript" src="layui/layui.js"></script>
+		<!-- layui 数据连接 -->
+		<script type="text/javascript" src="mapContent/indexMap.js"></script>
+		<!-- 百度地图 -->
+		<script type="text/javascript" src="baiduMap/indexMapGis.js"></script>
+		<script type="text/javascript" src="baiduMap/baiduMapHeight.js"></script>
+		<!-- 字体图标 -->
+		<script type="text/javascript" src="iconfont/iconfont.js"></script>
+        <script>
+        	layui.use(['layer'], function(){
+        		var layer = layui.layer;
+        		//layer.msg('此案例重点表现为表格数据的回显问题！');
+        	});
+        </script> 
+        <!-- 数据表格的自定义按钮 -->
+		<script type="text/html" id="barDemo">
+		  <a class="layui-btn layui-btn-xs" lay-event="gis">定位</a>
+		  <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+		  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+		</script>
+	</body>
+</html>

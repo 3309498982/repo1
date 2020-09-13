@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.css.rookie.dao.manual.SysUserDao">
+    <resultMap id="BaseResultMap" type="com.css.rookie.entity.SysUser">
+        <id column="ID" jdbcType="VARCHAR" property="id"/>
+        <result column="USERNAME" jdbcType="VARCHAR" property="username"/>
+        <result column="PASSWORD" jdbcType="VARCHAR" property="password"/>
+        <result column="REAL_NAME" jdbcType="VARCHAR" property="realName"/>
+        <result column="PHONE" jdbcType="VARCHAR" property="phone"/>
+        <result column="EMAIL" jdbcType="VARCHAR" property="email"/>
+        <result column="ID_CARD" jdbcType="VARCHAR" property="idCard"/>
+        <result column="IS_ADMIN" jdbcType="CHAR" property="isAdmin"/>
+        <result column="IS_FREEZE" jdbcType="CHAR" property="isFreeze"/>
+        <result column="SFYX" jdbcType="CHAR" property="sfyx"/>
+        <result column="CREATE_USER_ID" jdbcType="VARCHAR" property="createUserId"/>
+        <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="LAST_UPDATE_USER_ID" jdbcType="VARCHAR" property="lastUpdateUserId"/>
+        <result column="LAST_UPDATE_TIME" jdbcType="TIMESTAMP" property="lastUpdateTime"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        ID, USERNAME, PASSWORD, REAL_NAME, PHONE, EMAIL, ID_CARD, IS_ADMIN, IS_FREEZE, SFYX,
+        CREATE_USER_ID, CREATE_TIME, LAST_UPDATE_USER_ID, LAST_UPDATE_TIME
+    </sql>
+
+    <select id="queryUserInfoByCondition" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List"/>
+        from
+            SYS_USER
+        where
+            SFYX = 1
+        <if test="id != null and id != ''">
+            and ID = #{id,jdbcType=VARCHAR}
+        </if>
+        <if test="username != null and username != ''">
+            and USERNAME = #{username,jdbcType=VARCHAR}
+        </if>
+    </select>
+
+    <select id="queryUserInfosCountByCondition" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select
+            count(1)
+        from
+            SYS_USER
+        where
+            SFYX = 1
+        <if test="search.username != null and search.username != ''">
+            and USERNAME like concat('%', #{search.username,jdbcType=VARCHAR}, '%')
+        </if>
+        <if test="search.realName != null and search.realName != ''">
+            and REAL_NAME like concat('%', #{search.realName,jdbcType=VARCHAR}, '%')
+        </if>
+        <if test="search.phone != null and search.phone != ''">
+            and PHONE like concat('%', #{search.phone,jdbcType=VARCHAR}, '%')
+        </if>
+        <if test="search.email != null and search.email != ''">
+            and EMAIL like concat('%', #{search.email,jdbcType=VARCHAR}, '%')
+        </if>
+    </select>
+
+    <select id="queryUserInfosByCondition" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List"/>
+        from
+            SYS_USER
+        where
+            SFYX = 1
+        <if test="search.username != null and search.username != ''">
+            and USERNAME like concat('%', #{search.username,jdbcType=VARCHAR}, '%')
+        </if>
+        <if test="search.realName != null and search.realName != ''">
+            and REAL_NAME like concat('%', #{search.realName,jdbcType=VARCHAR}, '%')
+        </if>
+        <if test="search.phone != null and search.phone != ''">
+            and PHONE like concat('%', #{search.phone,jdbcType=VARCHAR}, '%')
+        </if>
+        <if test="search.email != null and search.email != ''">
+            and EMAIL like concat('%', #{search.email,jdbcType=VARCHAR}, '%')
+        </if>
+        order by LAST_UPDATE_TIME desc
+        <if test="pageSize != 0">
+            limit #{start}, #{pageSize}
+        </if>
+    </select>
+
+    <select id="queryUserInfoCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+        select
+            count(1)
+        from
+            SYS_USER
+        where
+            SFYX = 1 and USERNAME = #{username}
+    </select>
+
+    <select id="queryRoleInfos" resultType="com.css.rookie.vo.SysRoleVo">
+        select
+            ID, ROLE_NAME as roleName, SFYX, CREATE_USER_ID as createUserId, CREATE_TIME as createTime, LAST_UPDATE_USER_ID as lastUpdateUserId, LAST_UPDATE_TIME as lastUpdateTime
+        from
+            SYS_ROLE
+        where
+            SFYX = 1
+    </select>
+
+    <select id="queryRoleInfosByUserId" parameterType="java.lang.String" resultType="com.css.rookie.vo.SysRoleVo">
+        select
+            r.ID, r.ROLE_NAME as roleName, r.CREATE_USER_ID as createUserId, r.CREATE_TIME as createTime, r.LAST_UPDATE_USER_ID as lastUpdateUserId, r.LAST_UPDATE_TIME as lastUpdateTime, r.SFYX
+        from
+            SYS_USER_ROLE sur left join SYS_ROLE r on sur.ROLE_ID = r.ID
+        where
+            sur.SFYX = 1 and r.SFYX = 1 and sur.USER_ID = #{userId,jdbcType=VARCHAR}
+    </select>
+
+    <update id="delSysUserRoleByUserId" parameterType="com.css.rookie.entity.SysUserRole">
+        update SYS_USER_ROLE
+        <set>
+            <if test="lastUpdateUserId != null">
+                LAST_UPDATE_USER_ID = #{lastUpdateUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="lastUpdateTime != null">
+                LAST_UPDATE_TIME = #{lastUpdateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="sfyx != null">
+                SFYX = #{sfyx,jdbcType=CHAR},
+            </if>
+        </set>
+        where SFYX = 1 and USER_ID = #{userId,jdbcType=VARCHAR}
+    </update>
+
+    <select id="queryPermissionByUserId" parameterType="java.lang.String" resultType="java.lang.String">
+        select
+	        distinct m.PERMISSION
+        from
+            SYS_ROLE_MENU srm left join SYS_MENU m on srm.MENU_ID = m.ID
+        where
+            srm.SFYX = 1 and m.SFYX = 1 and srm.ROLE_ID in (
+                select
+                    ROLE_ID
+                from
+                    SYS_USER_ROLE
+                where
+                    SFYX = 1 and USER_ID = #{userId,jdbcType=VARCHAR}
+            )
+    </select>
+</mapper>
